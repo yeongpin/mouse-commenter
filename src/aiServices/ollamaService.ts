@@ -81,7 +81,7 @@ export async function generateCommentsWithOllama(
                                                 await progressCallback("\n// AI commenting complete!\n", true);
                                             }
                                         }
-                                        return; // Stop further processing directly
+                                        return;
                                     }
                                 }
                                 
@@ -98,6 +98,11 @@ export async function generateCommentsWithOllama(
                                 let processedResponse = response;
                                 if (!insideCodeBlock) {
                                     processedResponse = cleanMarkdown(response);
+                                }
+                                
+                                // Skip empty lines at the beginning
+                                if (finalOutput === "" && processedResponse.trim() === "") {
+                                    continue;
                                 }
                                 
                                 // Add to final output and send to callback

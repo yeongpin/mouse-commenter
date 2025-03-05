@@ -102,6 +102,11 @@ export async function generateCommentsWithOpenAI(
                                     }
                                     languageLineSkipped = true;
                                 }
+
+                                // Skip empty lines at the beginning
+                                if (finalOutput === "" && content.trim() === "") {
+                                    continue;
+                                }
             
                                 // 清理內容
                                 let processedContent = content;

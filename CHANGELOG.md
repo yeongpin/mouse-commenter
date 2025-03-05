@@ -17,3 +17,11 @@
 - Added configuration for comment language
 - Improved error handling
 
+### 1.0.3
+- Fixed issue with comment highlighting
+- Added configuration for comment language
+- Improved error handling
+
+
+
+
