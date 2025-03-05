@@ -2,7 +2,7 @@
   "name": "mouse-commenter",
   "displayName": "Mouse Code Commenter",
   "description": "Add AI-powered comments to your code",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "engines": {
     "vscode": "^1.75.0"
   },
