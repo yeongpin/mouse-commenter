@@ -63,6 +63,8 @@ This extension provides the following settings:
 
 ## 🚀 Quick Start
 
+<img src="resources/preview/use_2025-03-05_17-27-03.png" alt="Mouse Code Commenter">
+
 1. Install the extension from VS Code marketplace
 2. Configure your preferred AI provider:
    - For OpenAI: Set your API key
