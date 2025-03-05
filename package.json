@@ -1,0 +1,125 @@
+{
+  "name": "mouse-commenter",
+  "displayName": "AI Code Commenter",
+  "description": "Add AI-powered comments to your code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "mouse-commenter.addComments",
+        "title": "Add AI Comments",
+        "icon": {
+          "light": "resources/comment-light.svg",
+          "dark": "resources/comment-dark.svg"
+        }
+      },
+      {
+        "command": "mouse-commenter.configureAI",
+        "title": "Configure AI Provider",
+        "icon": {
+          "light": "resources/settings-light.svg",
+          "dark": "resources/settings-dark.svg"
+        }
+      },
+      {
+        "command": "mouse-commenter.reexplainSelected",
+        "title": "Reexplain Selected Code"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "mouse-commenter.addComments",
+          "group": "navigation",
+          "when": "editorLangId =~ /javascript|typescript|python|java|c|cpp|csharp|go|ruby|php|rust|html|css|markdown/"
+        },
+        {
+          "command": "mouse-commenter.configureAI",
+          "group": "navigation",
+          "when": "editorLangId =~ /javascript|typescript|python|java|c|cpp|csharp|go|ruby|php|rust|html|css|markdown/"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "mouse-commenter.reexplainSelected",
+          "when": "editorHasSelection && editorTextFocus && resourceScheme == 'untitled'",
+          "group": "1_modification"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Mouse Commenter",
+      "properties": {
+        "mouse-commenter.aiType": {
+          "type": "string",
+          "enum": ["openai", "ollama"],
+          "default": "ollama",
+          "description": "AI provider to use for generating comments"
+        },
+        "mouse-commenter.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "API Key for OpenAI"
+        },
+        "mouse-commenter.endpoint": {
+          "type": "string",
+          "default": "http://localhost:11434/api/generate",
+          "description": "API endpoint for Ollama"
+        },
+        "mouse-commenter.model": {
+          "type": "string",
+          "default": "",
+          "description": "Model to use (depends on AI provider)"
+        },
+        "mouse-commenter.promptTemplate": {
+          "type": "string",
+          "default": "You are an expert code commentator. Analyze the following ${language} code and provide a detailed explanation in ${commentLanguage}. Focus on the purpose, functionality, and important patterns or techniques used. Only add comments inside the code block while preserving the correct commenting style for each language. For HTML, use `<!-- -->` comments. For JavaScript inside <script> tags, use `//` for single-line comments and `/* */` for multi-line comments. Do not add explanations outside of the code block ， and do not add comments outside of the code block , and do not add any note outside of the code block . Ensure comments do not interfere with code execution.\n\n${code}",
+          "description": "Prompt template for AI"
+        },
+        "mouse-commenter.baseUrl": {
+          "type": "string",
+          "default": "https://api.openai.com/v1",
+          "description": "Base URL for OpenAI API"
+        },
+        "mouse-commenter.onlyCodeAndComments": {
+          "type": "boolean",
+          "default": false,
+          "description": "Only add comments, do not add author information and other explanations"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.60.0",
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "14.x",
+    "@types/ini": "^1.3.31",
+    "eslint": "^7.27.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "glob": "^7.1.7",
+    "mocha": "^8.4.0",
+    "typescript": "^4.3.2",
+    "vscode-test": "^1.5.2"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "ini": "^2.0.0"
+  }
+} 
