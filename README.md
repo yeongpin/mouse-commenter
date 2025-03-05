@@ -10,6 +10,8 @@ A powerful VSCode extension that uses AI to automatically add intelligent commen
 [![Stars](https://img.shields.io/github/stars/yeongpin/mouse-commenter?style=flat-square&logo=github)](https://github.com/yeongpin/mouse-commenter/stargazers)
 [![Download](https://img.shields.io/github/downloads/yeongpin/mouse-commenter/total?style=flat-square&logo=github&color=52c41a)](https://github.com/yeongpin/mouse-commenter/releases/latest)
 
+<img src="resources/preview/preview_2025-03-05_17-21-52.gif" alt="Mouse Code Commenter">
+
 </p>
 </div>
 
