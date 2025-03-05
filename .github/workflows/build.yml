@@ -1,0 +1,116 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+          cache: 'npm'
+          
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+        shell: bash
+
+      # Install dependencies
+      - name: Install Dependencies
+        run: |
+          npm ci
+          npm install -g @vscode/vsce
+        
+      # Build the extension
+      - name: Build Extension
+        run: |
+          npm run compile
+          vsce package --out "./dist/mouse-commenter-${{ env.VERSION }}.vsix"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      # List dist directory contents
+      - name: List dist directory
+        shell: bash
+        run: |
+          echo "Dist directory contents:"
+          ls -la dist/
+        
+      # Upload build artifacts
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: vsix-package
+          path: dist/*.vsix
+          retention-days: 1
+          
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          
+      - name: List Files
+        run: ls -R
+        working-directory: artifacts
+        
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Mouse Code Commenter ${{ github.ref_name }}
+          files: artifacts/**/*.vsix
+          draft: false
+          prerelease: false
+          body: |
+            ## What's Changed
+            
+            Please see [CHANGELOG.md](CHANGELOG.md) for detailed release notes.
+            
+            ## Installation
+            
+            1. Download the .vsix file
+            2. In VS Code, go to Extensions
+            3. Click "..." menu
+            4. Select "Install from VSIX..."
+            5. Choose the downloaded file
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    needs: release
+    runs-on: ubuntu-latest
+    if: success() && !contains(github.ref, '-')  # Only run for non-prerelease tags
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Download VSIX
+        uses: actions/download-artifact@v4
+        with:
+          name: vsix-package
+          path: dist
+          
+      - name: Publish to Marketplace
+        run: |
+          npm install -g @vscode/vsce
+          vsce publish -p ${{ secrets.VSCE_PAT }} --packagePath $(find dist -name "*.vsix") 
