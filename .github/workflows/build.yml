@@ -38,6 +38,7 @@ jobs:
       # Build the extension
       - name: Build Extension
         run: |
+          mkdir -p dist
           npm run compile
           vsce package --out "./dist/mouse-commenter-${{ env.VERSION }}.vsix"
         env:

@@ -106,7 +106,7 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "package": "vsce package --out dist/mouse-commenter.vsix",
+    "package": "mkdir -p dist && vsce package --out dist/mouse-commenter.vsix",
     "release": "node ./scripts/release.js"
   },
   "devDependencies": {
