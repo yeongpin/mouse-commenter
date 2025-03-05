@@ -22,6 +22,13 @@
 - Added configuration for comment language
 - Improved error handling
 
+### 1.0.4
+- Small bug fixes
+
+### 1.0.5
+- Small bug fixes
+
+
 
 
 
