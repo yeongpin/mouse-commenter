@@ -6,7 +6,7 @@ A powerful VSCode extension that uses AI to automatically add intelligent commen
 <p align="center">
 
 [![Release](https://img.shields.io/github/v/release/yeongpin/mouse-commenter?style=flat-square&logo=github&color=blue)](https://github.com/yeongpin/mouse-commenter/releases/latest)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)]
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yeongpin/mouse-commenter/blob/main/LICENSE)
 [![Stars](https://img.shields.io/github/stars/yeongpin/mouse-commenter?style=flat-square&logo=github)](https://github.com/yeongpin/mouse-commenter/stargazers)
 [![Download](https://img.shields.io/github/downloads/yeongpin/mouse-commenter/total?style=flat-square&logo=github&color=52c41a)](https://github.com/yeongpin/mouse-commenter/releases/latest)
 
