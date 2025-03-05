@@ -10,3 +10,10 @@
 - Added configuration for comment language
 - Improved error handling
 
+### 1.0.2
+- Fixed issue with comment highlighting
+- Added configuration for comment language
+- Improved error handling
+- Added configuration for comment language
+- Improved error handling
+

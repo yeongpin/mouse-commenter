@@ -27,7 +27,7 @@ export function loadConfig(context: vscode.ExtensionContext): AIConfig {
         model: 'codellama',
         endpoint: 'http://localhost:11434/api/generate',
         baseUrl: 'https://api.openai.com/v1',
-        promptTemplate: 'You are an expert code commentator. Analyze the following ${language} code and provide a detailed explanation in ${commentLanguage}. Focus on the purpose, functionality, and important patterns or techniques used. Only add comments inside the code block while preserving the correct commenting style for each language. For HTML, use `<!-- -->` comments. For JavaScript inside <script> tags, use `//` for single-line comments and `/* */` for multi-line comments. Do not add explanations outside of the code block ， and do not add comments outside of the code block , and do not add any note outside of the code block . Ensure comments do not interfere with code execution.\n\n${code}',
+        promptTemplate: 'You are an expert code commentator. Analyze the following ${language} code and provide a detailed explanation in ${commentLanguage}. Focus on the purpose, functionality, and important patterns or techniques used. Only add comments inside the code block while preserving the correct commenting style for each language. For HTML, use `<!-- -->` comments. For JavaScript inside <script> tags, use `//` for single-line comments and `/* */` for multi-line comments , if in css use /* */ comments. Do not add explanations outside of the code block ， and do not add comments outside of the code block , and do not add any note outside of the code block . Ensure comments do not interfere with code execution.\n\n${code}',
         onlyCodeAndComments: false
     };
     
