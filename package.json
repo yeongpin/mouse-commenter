@@ -41,12 +41,12 @@
         {
           "command": "mouse-commenter.addComments",
           "group": "navigation",
-          "when": "editorLangId =~ /javascript|typescript|python|java|c|cpp|csharp|go|ruby|php|rust|html|css|markdown/"
+          "when": "editorLangId =~ /javascript|typescript|python|java|c|cpp|csharp|go|ruby|php|rust|html|css|markdown|json|yaml|yml|txt|sql|bash|powershell|yaml|yml|vue|tsx|jsx|ts|tsx|jsx|cssa|py/"
         },
         {
           "command": "mouse-commenter.configureAI",
           "group": "navigation",
-          "when": "editorLangId =~ /javascript|typescript|python|java|c|cpp|csharp|go|ruby|php|rust|html|css|markdown/"
+          "when": "editorLangId =~ /javascript|typescript|python|java|c|cpp|csharp|go|ruby|php|rust|html|css|markdown|json|yaml|yml|txt|sql|bash|powershell|yaml|yml|vue|tsx|jsx|ts|tsx|jsx|cssa|py/"
         }
       ],
       "editor/context": [
